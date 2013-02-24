@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<view uin="V1hexuhhd3cgyx7-p38e07">
+		<property name="$defaultDiagram" value="true"/>
+		<property name="$metaclass" value="ClassDiagram20"/>
+		<property name="visibility" value="public"/>
+		<reference referencedUin="jdt:e_class:src:Player">
+			<property name="bounds" value="295,78,110,114"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="collapsedCompartments" value="Property20"/>
+			<reference referencedUin="jdt:l_ast:src:Player:lnkProperty">
+				<property name="sourceAnchor" value="336,197"/>
+				<property name="targetAnchor" value="336,300"/>
+				<property name="bendpoints" value=""/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:Player:lnkCar">
+				<property name="sourceAnchor" value="410,196"/>
+				<property name="targetAnchor" value="457,196"/>
+				<property name="bendpoints" value=""/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:Player:lnkDie">
+				<property name="sourceAnchor" value="300,123"/>
+				<property name="targetAnchor" value="140,123"/>
+				<property name="bendpoints" value=""/>
+			</reference>
+			<reference referencedUin="jdt:e_method:src:Player.Player:Player">
+				<property name="bounds" value="82,-17,0,0"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:Car">
+			<property name="bounds" value="452,157,110,134"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:Car:lnkUnit">
+				<property name="sourceAnchor" value="511,296"/>
+				<property name="targetAnchor" value="511,334"/>
+			</reference>
+			<reference referencedUin="jdt:e_field:src:Car.Name">
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:Property">
+			<property name="bounds" value="275,295,107,114"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:Property:lnkTile">
+				<property name="sourceAnchor" value="387,374"/>
+				<property name="targetAnchor" value="460,374"/>
+				<property name="bendpoints" value=""/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:Property:lnkGroup">
+				<property name="sourceAnchor" value="280,325"/>
+				<property name="targetAnchor" value="208,325"/>
+				<property name="bendpoints" value=""/>
+			</reference>
+			<reference referencedUin="jdt:e_field:src:Property.Name">
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:Board">
+			<property name="bounds" value="635,312,150,134"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:e_method:src:Board.Board:Board">
+				<property name="bounds" value="36,14,0,0"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:Monopoly">
+			<property name="bounds" value="555,16,125,134"/>
+			<property name="location_set_by_user" value="true"/>
+			<reference referencedUin="jdt:l_ast:src:Monopoly:lnkBoard">
+				<property name="sourceAnchor" value="649,155"/>
+				<property name="targetAnchor" value="649,317"/>
+				<property name="bendpoints" value=""/>
+			</reference>
+			<reference referencedUin="jdt:l_ast:src:Monopoly:players">
+				<property name="sourceAnchor" value="560,99"/>
+				<property name="targetAnchor" value="410,99"/>
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:Die">
+			<property name="bounds" value="55,78,80,80"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:Group">
+			<property name="bounds" value="55,295,148,80"/>
+			<property name="location_set_by_user" value="true"/>
+			<property name="collapsedCompartments" value=""/>
+			<reference referencedUin="jdt:e_field:src:Group.GroupName">
+			</reference>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:TestMonopoly">
+			<property name="bounds" value="835,15,169,134"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+		<reference referencedUin="jdt:e_class:src:Unit">
+			<property name="bounds" value="455,329,104,94"/>
+			<property name="location_set_by_user" value="true"/>
+		</reference>
+	</view>
+</nodeSet>
