@@ -20,3 +20,6 @@ End of Week 11
 The first two assessments will be in the form of in-class assessments performed within the
 tutorial sessions. The third assessment will be by presentation of your final program and
 documentation.
+
+
+change
