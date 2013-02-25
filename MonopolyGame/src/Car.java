@@ -1,9 +1,6 @@
 public class Car {
 
-	/**
-	 * @directed true
-	 */
-	Unit lnkUnit;
+	Tile lnkTile;
 	String Name;
 	
 	public Car(String name) {
