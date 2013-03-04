@@ -20,7 +20,19 @@ public class Player {
 	
 	public void passedLaunch()
 	{
-		this.money += Unit.CASH_LAUNCH;
+		this.updateMoney(UnitLaunch.CASH_LAUNCH);
+	}
+	
+	public void updateProperty()
+	{
+		//TODO: Update property
+		this.updateWorth();
+	}
+	
+	public void updateMoney(int cash)
+	{
+		this.money += cash;
+		this.updateWorth();
 	}
 	
 	public void updateWorth()
@@ -29,7 +41,7 @@ public class Player {
 	}
 	
 	public Player() {
-		lnkCar = new Car(name);
+		lnkCar = new Car();
 		lnkDie = new Die();
 		money = initMoney;
 		worth = money;

@@ -38,7 +38,6 @@ public class Monopoly {
 					currentPlayer.passedLaunch();
 				}
 				currentPlayer.lnkCar.lnkTile = newTile;
-				currentPlayer.updateWorth();				
 				System.out.println(currentPlayer.name + " lands on " + currentPlayer.lnkCar.lnkTile.name + ".");
 				System.out.println(currentPlayer.name + " has £" + currentPlayer.money + ".");
 			} while (die==REPLAY_DIE);
@@ -59,29 +58,20 @@ public class Monopoly {
 	public Monopoly(int numPlayers, int numRounds)
 	{
 		try
-		{
-			if (numPlayers<Monopoly.MIN_PLAYERS || numPlayers>Monopoly.MAX_PLAYERS)
+		{			
+			Board board = new Board();
+			players = new Player[numPlayers];
+			this.numPlayers = numPlayers;
+			this.numRounds = numRounds;
+			for (int i=0; i<numPlayers; i++)
 			{
-				System.out.println("Sorry, the number of players must be between " 
-						+ Monopoly.MIN_PLAYERS + " and " + Monopoly.MAX_PLAYERS);
+				players[i] = new Player();
+				players[i].name = Player.playerNamePool[i];
 			}
-			else
-			{
-				Board board = new Board();
-				players = new Player[numPlayers];
-				this.numPlayers = numPlayers;
-				this.numRounds = numRounds;
-				for (int i=0; i<numPlayers; i++)
-				{
-					players[i] = new Player();
-					players[i].name = Player.playerNamePool[i];
-				}
-			}
-
 		}
-		catch (ArrayIndexOutOfBoundsException e)
+		catch (ArrayIndexOutOfBoundsException e)		//for the rare case that the MIN_PLAYER value is set to more players than player names exist.
 		{
-			System.out.println("Numbers less than 0 and more than "	+ Player.playerNamePool.length 
+			System.out.println("Minimum Player numbers less than 0 and more than "	+ Player.playerNamePool.length 
 					+ " will throw ArrayIndexOutOfBounds exceptions and should be avoided.");
 		}
 

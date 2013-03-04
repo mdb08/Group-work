@@ -13,24 +13,20 @@ public class Board {
 
 		//Tile instantiation
 		for (int i=0; i<NUM_OF_UNITS; i++){
-			//System.out.println(i);		//DEBUG
 			//Launch Unit
 			if (i==LAUNCH_NUM)
 			{
-				tiles[i] = new Unit("Launch Unit");
-				tiles[i].name = "Launch Unit";
+				tiles[i] = new UnitLaunch("Launch Unit");
 			}
 			//Fuel Unit
 			else if (i==FUEL_NUM)
 			{
-				tiles[i] = new Unit("Fuel Unit");
-				tiles[i].name = "Fuel Unit";
+				tiles[i] = new UnitFuel("Fuel Unit");
 			}
 			//Electricity Unit
 			else if (i==ELECTRICITY_NUM)
 			{
-				tiles[i] = new Unit("Electricity Unit");
-				tiles[i].name = "Electricity Unit";
+				tiles[i] = new UnitElectricity("Electricity Unit");
 			}
 			//Properties
 			else

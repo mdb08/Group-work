@@ -1,4 +1,6 @@
+import java.awt.Color;
+
 public class Group {
 
-	String GroupName;
+	Color groupColour;
 }
