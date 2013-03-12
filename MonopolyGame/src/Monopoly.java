@@ -1,6 +1,18 @@
 public class Monopoly {
 
+	/**
+	 * @clientCardinality 1
+	 * @directed true
+	 * @supplierCardinality 1
+	 */
+	
 	private Board lnkBoard;
+	
+	/**
+	 * @clientCardinality 1
+	 * @supplierCardinality 2..4
+	 */
+	
 	Player[] players;
 
 	public static final int REPLAY_DIE=6;

@@ -1,7 +1,17 @@
 public class UnitElectricity extends Tile{
 
+	/**
+	 * @directed true
+	 */
+	
 	int cash;			//cash is added to the player's balance - fees are thus negative numbers
 	int cost;
+	
+	/**
+	 * @clientCardinality 0..1
+	 * @supplierCardinality 0..1
+	 */
+	
 	Player owner;
 
 	public static final float RENT_FACTOR = 4;

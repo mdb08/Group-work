@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<nodeSet  version="1.1">
+	<node uin="1g64yhe7650ba-7xi7kb">
+		<property name="$metaclass" value="Note"/>
+	</node>
+	<node uin="8bho0jhe765l1y-f15lgz">
+		<property name="$metaclass" value="Actor20"/>
+		<property name="$name" value="Actor1"/>
+	</node>
+	<node uin="ttifwdhe766kc1-vxpmfi">
+		<property name="$metaclass" value="Constraint"/>
+		<property name="$name" value="Constraint1"/>
+		<node uin="ul14qahe766kc6-j9btud">
+			<property name="$metaclass" value="ValueSpecification"/>
+			<property name="$name" value="ValueSpecification1"/>
+			<property name="language" value="ocl"/>
+		</node>
+	</node>
+	<node uin="1g64yhe76a5mn-vlxphf">
+		<property name="$metaclass" value="Note"/>
+		<property name="$note_text" value="Has a"/>
+		<property name="text_only" value="true"/>
+	</node>
+	<node uin="1g64yhe76bpth-s478pa">
+		<property name="$metaclass" value="Note"/>
+		<property name="$note_text" value="Has"/>
+		<property name="text_only" value="true"/>
+	</node>
+	<node uin="1g64yhe76c0ki-djju1q">
+		<property name="$metaclass" value="Note"/>
+		<property name="$note_text" value="Rolls"/>
+		<property name="text_only" value="true"/>
+	</node>
+	<node uin="1g64yhe76cji7frfopa">
+		<property name="$metaclass" value="Note"/>
+		<property name="$note_text" value="Is part of a"/>
+		<property name="text_only" value="true"/>
+	</node>
+	<node uin="1g64yhe76cu4cxojiwn">
+		<property name="$metaclass" value="Note"/>
+		<property name="$note_text" value="Is owned by"/>
+		<property name="text_only" value="true"/>
+	</node>
+	<node uin="1g64yhe76e2bt-6t6ilf">
+		<property name="$metaclass" value="Note"/>
+		<property name="$note_text" value="Controls"/>
+		<property name="text_only" value="true"/>
+	</node>
+	<node uin="1g64yhe76e7yp3p1ikc">
+		<property name="$metaclass" value="Note"/>
+		<property name="$note_text" value="Is Owned by"/>
+		<property name="text_only" value="true"/>
+	</node>
+	<node uin="1g64yhe76gkme-ge78uq">
+		<property name="$metaclass" value="Note"/>
+		<property name="$note_text" value="Is Owned by"/>
+		<property name="text_only" value="true"/>
+	</node>
+	<node uin="1g64yhe76gwoy3neugv">
+		<property name="$metaclass" value="Note"/>
+		<property name="$note_text" value="Has"/>
+		<property name="text_only" value="true"/>
+	</node>
+	<node uin="1g64yhe76h550-ojf2of">
+		<property name="$metaclass" value="Note"/>
+		<property name="$note_text" value="Is a type of"/>
+		<property name="text_only" value="true"/>
+	</node>
+	<node uin="1g64yhe76haxao4jhmv">
+		<property name="$metaclass" value="Note"/>
+		<property name="$note_text" value="Occupies"/>
+		<property name="text_only" value="true"/>
+	</node>
+	<node uin="1g64yhe76hffj-3km5wu">
+		<property name="$metaclass" value="Note"/>
+		<property name="$note_text" value="Is a type of"/>
+		<property name="text_only" value="true"/>
+	</node>
+	<node uin="1g64yhe76hmp6-iydzg8">
+		<property name="$metaclass" value="Note"/>
+		<property name="$note_text" value="Is a type of"/>
+		<property name="text_only" value="true"/>
+	</node>
+	<node uin="1g64yhe76mdoe-c7ayi5">
+		<property name="$metaclass" value="Note"/>
+		<property name="$note_text" value="Is a type of"/>
+		<property name="text_only" value="true"/>
+	</node>
+</nodeSet>

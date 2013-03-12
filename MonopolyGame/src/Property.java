@@ -1,26 +1,31 @@
-public class Property extends Tile{
+public class Property extends Tile {
 
-	private Tile lnkTile;
+	/**
+	 * @clientCardinality 2
+	 * @directed true
+	 * @supplierCardinality 1
+	 */
+	
 	private Group lnkGroup;
+	
+	/**
+	 * @clientCardinality 0..*
+	 * @supplierCardinality 0..1
+	 */
+	
 	public Player owner;
 	int rent;
 	int cost;
-	
-	void checkTile(Player currentPlayer){
-		if (this.owner==null)
-		{
-			if (currentPlayer.money < this.cost)
-			{
+
+	void checkTile(Player currentPlayer) {
+		if (this.owner == null) {
+			if (currentPlayer.money < this.cost) {
 				System.out.println("Sorry, not enough money.");
-			}
-			else
-			{
+			} else {
 				currentPlayer.purchase(this);
 			}
-		}
-		else if (this.owner!=currentPlayer)
-		{
+		} else if (this.owner != currentPlayer) {
 			currentPlayer.payRent(this);
 		}
-	}	
+	}
 }

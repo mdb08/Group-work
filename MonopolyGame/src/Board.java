@@ -1,18 +1,33 @@
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-import org.xml.sax.Attributes;
 
 public class Board {
 
+	/**
+	 * @clientCardinality 1
+	 * @directed true
+	 * @supplierCardinality 24
+	 */
+	
 	final static int NUM_OF_UNITS = 24;	
 	final static int LAUNCH_NUM = 0;
 	public static int fuelNum;
 	public static int electricityNum;
 	private final static String FILENAME= "properties.xml";
 
+	
+	
+	
+	
+	/**
+	 * @clientCardinality 1
+	 * @supplierCardinality 24
+	 */
+	
 	static Tile[] tiles;
 
 	public Board()
