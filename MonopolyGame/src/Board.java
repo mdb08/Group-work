@@ -2,8 +2,8 @@ public class Board {
 
 	final static int NUM_OF_UNITS = 24;	
 	final static int LAUNCH_NUM = 0;
-	final static int FUEL_NUM = 8;
-	final static int ELECTRICITY_NUM = 20;
+	final static int FUEL_NUM = 9;
+	final static int ELECTRICITY_NUM = 21;
 	
 	static Tile[] tiles;
 	
@@ -31,8 +31,7 @@ public class Board {
 			//Properties
 			else
 			{
-				tiles[i] = new Property();
-				tiles[i].name = "Unit" + i;
+				tiles[i] = new Property(i);
 			}
 			tiles[i].tileID = i;
 		}

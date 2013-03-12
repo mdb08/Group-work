@@ -8,6 +8,7 @@ public class Monopoly {
 	public static final int MAX_PLAYERS=4;
 	public int numPlayers;
 	public int numRounds;
+	public static int die;
 
 	void playGame()
 	{
@@ -25,13 +26,12 @@ public class Monopoly {
 		for (int i=0; i<this.numPlayers;i++)
 		{
 			Player currentPlayer = players[i];
-			int die;
 			do {
 				Tile oldTile = currentPlayer.lnkCar.lnkTile;
 				die = currentPlayer.roll();
 				System.out.println(currentPlayer.name + " rolls " + die + ".");
 				Tile newTile = Board.tiles[(currentPlayer.lnkCar.lnkTile.tileID+die)%Board.NUM_OF_UNITS];
-				newTile.checkTile(currentPlayer);
+				
 				//Check if passed Launch
 				if (oldTile.tileID>newTile.tileID && newTile.tileID!=Board.LAUNCH_NUM)
 				{
@@ -39,6 +39,8 @@ public class Monopoly {
 				}
 				currentPlayer.lnkCar.lnkTile = newTile;
 				System.out.println(currentPlayer.name + " lands on " + currentPlayer.lnkCar.lnkTile.name + ".");
+				//Check tile for any actions
+				newTile.checkTile(currentPlayer);
 				System.out.println(currentPlayer.name + " has £" + currentPlayer.money + ".");
 			} while (die==REPLAY_DIE);
 
