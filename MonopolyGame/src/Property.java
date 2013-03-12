@@ -6,13 +6,6 @@ public class Property extends Tile{
 	int rent;
 	int cost;
 	
-	public Property(int index)
-	{
-		this.name = "Unit" + index;
-		this.cost = 4 + 10*index;
-		this.rent = 4*index;
-	}
-	
 	void checkTile(Player currentPlayer){
 		if (this.owner==null)
 		{

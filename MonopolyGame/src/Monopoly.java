@@ -27,17 +27,18 @@ public class Monopoly {
 		{
 			Player currentPlayer = players[i];
 			do {
-				Tile oldTile = currentPlayer.lnkCar.lnkTile;
+				Tile oldTile = Board.tiles[currentPlayer.lnkCar.lnkTile.tileID];
 				die = currentPlayer.roll();
 				System.out.println(currentPlayer.name + " rolls " + die + ".");
 				Tile newTile = Board.tiles[(currentPlayer.lnkCar.lnkTile.tileID+die)%Board.NUM_OF_UNITS];
-				
+				currentPlayer.lnkCar.lnkTile = newTile;
+				//System.out.println(oldTile.tileID + " , " + newTile.tileID);		//DEBUG
 				//Check if passed Launch
 				if (oldTile.tileID>newTile.tileID && newTile.tileID!=Board.LAUNCH_NUM)
 				{
 					currentPlayer.passedLaunch();
 				}
-				currentPlayer.lnkCar.lnkTile = newTile;
+
 				System.out.println(currentPlayer.name + " lands on " + currentPlayer.lnkCar.lnkTile.name + ".");
 				//Check tile for any actions
 				newTile.checkTile(currentPlayer);

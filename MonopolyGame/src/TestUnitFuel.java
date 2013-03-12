@@ -4,8 +4,7 @@ public class TestUnitFuel {
 	{
 		String name = "Test Fuel Unit";
 		UnitFuel uf = new UnitFuel(name);
-		System.out.println("Created new Fuel Unit with name=" + name 
-				+ ", fee=" + -uf.CASH_FUEL + " and percentage=" + uf.FUEL_PERCENTAGE);
+		System.out.println("Created new Fuel Unit with name=" + name);
 		Board board = new Board();
 		Player player = new Player();
 		System.out.println("Some scenarios of a player with starting money=3000 getting onto the Fuel Unit:");

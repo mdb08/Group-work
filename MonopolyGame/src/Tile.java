@@ -5,6 +5,9 @@ public class Tile {
 	
 	void checkTile(Player currentPlayer)
 	{
-		this.checkTile(currentPlayer);
+		if (!(this instanceof Tile))
+		{
+			this.checkTile(currentPlayer);
+		}
 	}
 }
