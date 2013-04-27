@@ -9,41 +9,44 @@ public class Player {
 	 * @directed true
 	 * @supplierCardinality 1
 	 */
-	
+
 	static final int initMoney = 1500;
-	
+
 	/**
 	 * @clientCardinality 1
 	 * @supplierCardinality 1
 	 */
-	
+
 	Car lnkCar;
-	
+
 	/**
 	 * @clientCardinality 1
 	 * @supplierCardinality 1
 	 */
-	
+
 	Die lnkDie;
 
 	static final String[] playerNamePool = { "audi", "benz", "bmw", "porsche",
-			"saab", "vw" };
+		"saab", "vw" };
 	static final String[] playerNamePoolX = { "batmobile", "delorean", "lorry" };
 
 	int money;
 	int worth; //worth = card value + money
 	int turn; //might need it to calculate rounds in Jail
 	String name;
+	boolean isInJail;
+	int turnsInJail;
 
 	public void payRent(Tile tile) {
 		if (tile instanceof Property) {
-			((Property) tile).owner.updateMoney(((Property) tile).rent);
-			this.updateMoney(-((Property) tile).rent);
-			System.out.println(this.name + " pays £" + ((Property) tile).rent
-					+ " rent to " + ((Property) tile).owner.name);
+			((Property) tile).owner.updateMoney(((Property) tile).getRent());
+			this.updateMoney(-((Property) tile).getRent());
+			System.out.println(this.name + " pays £"
+					+ ((Property) tile).getRent() + " rent to "
+					+ ((Property) tile).owner.name);
 		} else if (tile instanceof UnitElectricity) {
-			((UnitElectricity) tile).owner.updateMoney(((UnitElectricity) tile)
-					.getRent());
+			System.out.println("DEBUG: Pay rent to electricity");
+			((UnitElectricity) tile).owner.updateMoney(((UnitElectricity) tile).getRent());
 			this.updateMoney(-((UnitElectricity) tile).getRent());
 			System.out.println(this.name + " pays £"
 					+ ((UnitElectricity) tile).getRent() + " rent to "
@@ -64,8 +67,8 @@ public class Player {
 		System.out.println("Do you want to buy " + tile.name + "? (y/n)");
 		String s=null;
 		try{
-		    BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
-		    s = bufferRead.readLine();
+			BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
+			s = bufferRead.readLine();
 		}
 		catch(IOException e)
 		{
@@ -100,7 +103,7 @@ public class Player {
 		{
 			System.out.println("Chose not to purchase the property.");
 		}
-		
+
 	}
 
 	public int roll() {
@@ -126,9 +129,69 @@ public class Player {
 		this.worth = this.money; //TODO: Add property value to money to calculate the worth
 	}
 
+	public void sendToJail()
+	{
+		this.lnkCar.lnkTile = Board.tiles[Board.JAIL_NUM];
+		this.isInJail = true;
+		System.out.println(this.name + " is sent to Jail!");
+		this.inJail();
+	}
+
+	public void inJail()
+	{
+		//Bailing out
+		System.out.println("Do you want to pay £50 to get out of jail? (y/n)");
+		String s=null;
+		try{
+			BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
+			s = bufferRead.readLine();
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+		if (s.equals("y"))
+		{
+			this.updateMoney(-UnitJail.BAIL_OUT_COST);
+			System.out.println(this.name + " pays £" + UnitJail.BAIL_OUT_COST + " to get out of jail.");
+			this.getOutOfJail();
+		}
+		//Rolling the die
+		else
+		{
+			Monopoly.die = this.roll();
+			if (Monopoly.die==UnitJail.EXIT_NUM)
+			{
+				this.getOutOfJail();
+			}
+			else
+			{
+				System.out.println(this.name + " rolled " + Monopoly.die + " and failed to get out of jail.");
+			}
+		}
+		if (this.isInJail)
+		{
+			this.turnsInJail++;
+		}
+		if (this.turnsInJail==UnitJail.MAX_TURNS_IN_JAIL)
+		{
+			this.updateMoney(-UnitJail.BAIL_OUT_COST);
+			System.out.println(this.name + " is forced to pay £" + UnitJail.BAIL_OUT_COST + " to get out of jail.");
+			this.getOutOfJail();
+		}
+	}
+
+	public void getOutOfJail()
+	{
+		this.isInJail = false;
+		this.turnsInJail = 0;
+		Monopoly.playTurn(this);
+	}
+
 	public Player() {
 		lnkCar = new Car();
 		lnkDie = new Die();
+		isInJail = false;
 		money = initMoney;
 		worth = money;
 		turn = 0;

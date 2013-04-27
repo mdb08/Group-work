@@ -5,14 +5,14 @@ public class Monopoly {
 	 * @directed true
 	 * @supplierCardinality 1
 	 */
-	
+
 	private Board lnkBoard;
-	
+
 	/**
 	 * @clientCardinality 1
 	 * @supplierCardinality 2..4
 	 */
-	
+
 	Player[] players;
 
 	public static final int REPLAY_DIE=6;
@@ -21,6 +21,8 @@ public class Monopoly {
 	public int numPlayers;
 	public int numRounds;
 	public static int die;
+
+
 
 	void playGame()
 	{
@@ -38,26 +40,43 @@ public class Monopoly {
 		for (int i=0; i<this.numPlayers;i++)
 		{
 			Player currentPlayer = players[i];
-			do {
-				Tile oldTile = Board.tiles[currentPlayer.lnkCar.lnkTile.tileID];
+			playTurn(currentPlayer);
+		}
+	}
+
+	static void playTurn(Player currentPlayer)
+	{
+		do {
+			System.out.println("\n" + currentPlayer.name + "'s turn:");
+			if (currentPlayer.isInJail)
+			{
+				currentPlayer.lnkCar.lnkTile.checkTile(currentPlayer);
+			}
+			else
+			{				
+				//Roll die
 				die = currentPlayer.roll();
 				System.out.println(currentPlayer.name + " rolls " + die + ".");
+
+				//Update tile
+				Tile oldTile = Board.tiles[currentPlayer.lnkCar.lnkTile.tileID];
 				Tile newTile = Board.tiles[(currentPlayer.lnkCar.lnkTile.tileID+die)%Board.NUM_OF_UNITS];
 				currentPlayer.lnkCar.lnkTile = newTile;
+				System.out.println(currentPlayer.name + " lands on " + currentPlayer.lnkCar.lnkTile.name + ".");
 				//System.out.println(oldTile.tileID + " , " + newTile.tileID);		//DEBUG
+
+
 				//Check if passed Launch
 				if (oldTile.tileID>newTile.tileID && newTile.tileID!=Board.LAUNCH_NUM)
 				{
 					currentPlayer.passedLaunch();
 				}
 
-				System.out.println(currentPlayer.name + " lands on " + currentPlayer.lnkCar.lnkTile.name + ".");
 				//Check tile for any actions
 				newTile.checkTile(currentPlayer);
-				System.out.println(currentPlayer.name + " has £" + currentPlayer.money + ".");
-			} while (die==REPLAY_DIE);
-
-		}
+			}
+			System.out.println(currentPlayer.name + " has £" + currentPlayer.money + ".");
+		} while (die==REPLAY_DIE);
 	}
 
 	void startGame()

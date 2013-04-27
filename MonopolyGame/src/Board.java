@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
@@ -12,36 +14,43 @@ public class Board {
 	 * @directed true
 	 * @supplierCardinality 24
 	 */
-	
+
 	final static int NUM_OF_UNITS = 24;	
+	final static int NUM_OF_GROUPS = 9;
 	final static int LAUNCH_NUM = 0;
+	final static int JAIL_NUM = 6;
+	final static int GOTOJAIL_NUM = 18;
 	public static int fuelNum;
 	public static int electricityNum;
 	private final static String FILENAME= "properties.xml";
 
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * @clientCardinality 1
 	 * @supplierCardinality 24
 	 */
-	
+
 	static Tile[] tiles;
+	static Group[] groups;
 
 	public Board()
 	{
 
-		tiles = new Tile[NUM_OF_UNITS];		
+		tiles = new Tile[NUM_OF_UNITS];
+		groups = new Group[NUM_OF_GROUPS];
 
-		tiles[LAUNCH_NUM] = new UnitLaunch("Launch Unit");
 		//Filling array with dummies
 		for (int i=0; i<tiles.length; i++)
 		{
 			tiles[i] = new Tile();
 			tiles[i].tileID = i;
 		}
+		tiles[LAUNCH_NUM] = new UnitLaunch("Launch Unit");
+		tiles[JAIL_NUM] = new UnitJail("Jail");
+		tiles[GOTOJAIL_NUM] = new UnitGoToJail("Goto Jail");
 
 		//Writing mask-data to array
 		readFromFile(FILENAME);
@@ -122,12 +131,14 @@ public class Board {
 								Board.electricityNum = position;
 							}
 						}
+						//Properties
 						else
 						{
 							tiles[position] = new Property();
 							((Property)tiles[position]).name = name;
 							((Property)tiles[position]).rent = rent;
 							((Property)tiles[position]).cost = price;
+							((Property)tiles[position]).lnkGroup = checkGroup(group);
 						}
 						tiles[position].tileID = position;
 						bProperty = false;
@@ -151,6 +162,35 @@ public class Board {
 					if (qName.equalsIgnoreCase("group")) {
 						bGroup = false;
 					}
+				}
+
+				//checks if Group exists - if not, creates one and adds it to array
+				private Group checkGroup(String str) {
+					Group group = new Group(str);
+					boolean exists = false;
+					int position = -1;
+					for (int i=0; i<groups.length; i++)
+					{
+						if (groups[i]==null)
+						{
+							exists = false;
+							position = i;
+							break;
+						}
+						else if (groups[i].groupName.equals(group.groupName))
+						{
+							//System.out.println("DEBUG: found matching group @ " + i);
+							exists = true;
+							group = groups[i];
+							break;
+						}
+					}
+					if (!exists)
+					{
+						//System.out.println("DEBUG: New group added: " + group.groupName);
+						groups[position] = group;
+					}
+					return group;
 				}
 
 				public void characters(char ch[], int start, int length) throws SAXException {
