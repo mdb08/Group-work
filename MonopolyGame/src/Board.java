@@ -117,19 +117,20 @@ public class Board {
 						if(isPowerUnit)
 						{
 							//Fuel Unit
-							if (name=="Fuel")
+							if (name.equals("Fuel"))
 							{
 								tiles[position] = new UnitFuel("Fuel Unit");
 								((UnitFuel)tiles[position]).cost = price;
 								Board.fuelNum = position;
 							}
 							//Electricity Unit
-							else if (name=="Electricity")
+							else if (name.equals("Electricity"))
 							{
 								tiles[position] = new UnitElectricity("Electricity Unit");
 								((UnitElectricity)tiles[position]).cost = price;
 								Board.electricityNum = position;
 							}
+							isPowerUnit = false;
 						}
 						//Properties
 						else
@@ -208,6 +209,10 @@ public class Board {
 					}
 					if (bGroup) {
 						group = new String(ch, start, length);
+						if (group.equals("Power"))
+						{
+							isPowerUnit = true;
+						}
 					}
 				}
 			};

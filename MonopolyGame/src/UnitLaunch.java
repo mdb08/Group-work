@@ -11,6 +11,7 @@ public class UnitLaunch extends Tile{
 	
 	public UnitLaunch(String name){
 		this.name = name;
+		this.tileID = Board.LAUNCH_NUM;
 		cash = CASH_LAUNCH;		
 	}
 }

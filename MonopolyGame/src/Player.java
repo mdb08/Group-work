@@ -38,24 +38,27 @@ public class Player {
 	int turnsInJail;
 
 	public void payRent(Tile tile) {
+		int rent;
 		if (tile instanceof Property) {
-			((Property) tile).owner.updateMoney(((Property) tile).getRent());
-			this.updateMoney(-((Property) tile).getRent());
+			rent = ((Property) tile).getRent();
+			((Property) tile).owner.updateMoney(rent);
+			this.updateMoney(-rent);
 			System.out.println(this.name + " pays £"
-					+ ((Property) tile).getRent() + " rent to "
+					+ rent + " rent to "
 					+ ((Property) tile).owner.name);
 		} else if (tile instanceof UnitElectricity) {
-			System.out.println("DEBUG: Pay rent to electricity");
-			((UnitElectricity) tile).owner.updateMoney(((UnitElectricity) tile).getRent());
-			this.updateMoney(-((UnitElectricity) tile).getRent());
+			rent = ((UnitElectricity) tile).getRent();
+			((UnitElectricity) tile).owner.updateMoney(rent);
+			this.updateMoney(-rent);
 			System.out.println(this.name + " pays £"
-					+ ((UnitElectricity) tile).getRent() + " rent to "
+					+ rent + " rent to "
 					+ ((UnitElectricity) tile).owner.name);
 		} else if (tile instanceof UnitFuel) {
-			((UnitFuel) tile).owner.updateMoney(((UnitFuel) tile).getRent());
-			this.updateMoney(-((UnitFuel) tile).getRent());
+			rent = ((UnitFuel) tile).getRent();
+			((UnitFuel) tile).owner.updateMoney(rent);
+			this.updateMoney(-rent);
 			System.out.println(this.name + " pays £"
-					+ ((UnitFuel) tile).getRent() + " rent to "
+					+ rent + " rent to "
 					+ ((UnitFuel) tile).owner.name);
 		} else {
 			System.out.println("You can't purchase " + tile.name);
@@ -162,6 +165,7 @@ public class Player {
 			Monopoly.die = this.roll();
 			if (Monopoly.die==UnitJail.EXIT_NUM)
 			{
+				System.out.println(this.name + " rolled " + UnitJail.EXIT_NUM + " and got out of jail");
 				this.getOutOfJail();
 			}
 			else

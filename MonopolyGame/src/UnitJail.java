@@ -7,11 +7,13 @@ public class UnitJail extends Tile{
 	public UnitJail(String name)	
 	{
 		this.name = name;
+		this.tileID = Board.JAIL_NUM;
 	}
 	void checkTile(Player currentPlayer)
 	{
 		if (currentPlayer.isInJail)
 		{
+			System.out.println("DEBUG: Turns in jail:" + currentPlayer.turnsInJail);
 			currentPlayer.inJail();
 		}
 		//add "A is visiting B at the Jail. Harharhar"
