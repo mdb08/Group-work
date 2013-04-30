@@ -192,6 +192,24 @@ public class Player {
 		Monopoly.playTurn(this);
 	}
 
+	public void moveToTile(Tile newTile, boolean checkLaunch)
+	{
+		//update tiles
+		Tile oldTile = Board.tiles[this.lnkCar.lnkTile.tileID];
+		this.lnkCar.lnkTile = newTile;
+		System.out.println(this.name + " lands on " + this.lnkCar.lnkTile.name + ".");
+
+		if (checkLaunch)
+		{
+			//Check if passed Launch
+			if (oldTile.tileID>newTile.tileID && newTile.tileID!=Board.LAUNCH_NUM)
+			{
+				this.passedLaunch();
+			}
+		}
+
+	}
+
 	public Player() {
 		lnkCar = new Car();
 		lnkDie = new Die();

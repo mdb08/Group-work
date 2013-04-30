@@ -20,6 +20,9 @@ public class Board {
 	final static int LAUNCH_NUM = 0;
 	final static int JAIL_NUM = 6;
 	final static int GOTOJAIL_NUM = 18;
+	final static int COINCIDENCE_NUM = 3;
+	final static int PROVIDENCE_NUM = 15;
+	final static int AIRPORT_NUM = 12;
 	public static int fuelNum;
 	public static int electricityNum;
 	private final static String FILENAME= "properties.xml";
@@ -35,12 +38,15 @@ public class Board {
 
 	static Tile[] tiles;
 	static Group[] groups;
+	static CardCoincidence[] coinCards;
+	static CardProvidence[] provCards;
 
 	public Board()
 	{
-
 		tiles = new Tile[NUM_OF_UNITS];
 		groups = new Group[NUM_OF_GROUPS];
+		coinCards = new CardCoincidence[Card.NUM_OF_COINCIDENCE];
+		provCards = new CardProvidence[Card.NUM_OF_PROVIDENCE];
 
 		//Filling array with dummies
 		for (int i=0; i<tiles.length; i++)
@@ -51,7 +57,19 @@ public class Board {
 		tiles[LAUNCH_NUM] = new UnitLaunch("Launch Unit");
 		tiles[JAIL_NUM] = new UnitJail("Jail");
 		tiles[GOTOJAIL_NUM] = new UnitGoToJail("Goto Jail");
+		tiles[COINCIDENCE_NUM] = new UnitCoincidence("Coincidence");
+		tiles[PROVIDENCE_NUM] = new UnitProvidence("Providence");
+		tiles[AIRPORT_NUM] = new UnitAirport("Airport East Midlands");
 
+		//Add cards
+		for (int i=0; i<Card.NUM_OF_COINCIDENCE; i++)
+		{
+			coinCards[i] = new CardCoincidence(UnitCoincidence.text[i], UnitCoincidence.amount[i]);
+		}
+		for (int i=0; i<Card.NUM_OF_PROVIDENCE; i++)
+		{
+			provCards[i] = new CardProvidence(UnitProvidence.text[i], UnitProvidence.destination[i], UnitProvidence.distance[i], UnitProvidence.checkLaunch[i]);
+		}
 		//Writing mask-data to array
 		readFromFile(FILENAME);
 	}

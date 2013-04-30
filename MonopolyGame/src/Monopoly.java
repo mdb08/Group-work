@@ -13,14 +13,15 @@ public class Monopoly {
 	 * @supplierCardinality 2..4
 	 */
 
-	Player[] players;
+	public static Player[] players;
 
 	public static final int REPLAY_DIE=6;
 	public static final int MIN_PLAYERS=2;
 	public static final int MAX_PLAYERS=4;
-	public int numPlayers;
+	public static int numPlayers;
 	public int numRounds;
 	public static int die;
+	public static Player currentPlayer;
 
 
 
@@ -39,7 +40,7 @@ public class Monopoly {
 	{
 		for (int i=0; i<this.numPlayers;i++)
 		{
-			Player currentPlayer = players[i];
+			currentPlayer = players[i];
 			playTurn(currentPlayer);
 		}
 	}
@@ -58,20 +59,10 @@ public class Monopoly {
 				die = currentPlayer.roll();
 				System.out.println(currentPlayer.name + " rolls " + die + ".");
 
-				//Update tile
-				Tile oldTile = Board.tiles[currentPlayer.lnkCar.lnkTile.tileID];
+				//Update tile and check if passed Launch
 				Tile newTile = Board.tiles[(currentPlayer.lnkCar.lnkTile.tileID+die)%Board.NUM_OF_UNITS];
-				currentPlayer.lnkCar.lnkTile = newTile;
-				System.out.println(currentPlayer.name + " lands on " + currentPlayer.lnkCar.lnkTile.name + ".");
-				//System.out.println(oldTile.tileID + " , " + newTile.tileID);		//DEBUG
-
-
-				//Check if passed Launch
-				if (oldTile.tileID>newTile.tileID && newTile.tileID!=Board.LAUNCH_NUM)
-				{
-					currentPlayer.passedLaunch();
-				}
-
+				currentPlayer.moveToTile(newTile, true);
+				
 				//Check tile for any actions
 				newTile.checkTile(currentPlayer);
 			}
