@@ -13,10 +13,13 @@ public class UnitJail extends Tile{
 	{
 		if (currentPlayer.isInJail)
 		{
-			System.out.println("DEBUG: Turns in jail:" + currentPlayer.turnsInJail);
+			System.out.println("Turns in jail:" + currentPlayer.turnsInJail);
 			currentPlayer.inJail();
 		}
-		//add "A is visiting B at the Jail. Harharhar"
+		else
+		{
+			System.out.println(currentPlayer.name + " is only visiting in Jail");
+		}
 	}
 
 }

@@ -47,7 +47,5 @@ public class UnitAirport extends Tile{
 		{
 			System.out.println("Cancelled flight. If you prefer travelling by an " + currentPlayer.name + " car, so be it.");
 		}
-		
-		
 	}
 }

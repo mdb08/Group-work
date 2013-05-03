@@ -39,7 +39,7 @@ public class UnitElectricity extends Tile{
 	
 	public int getRent()
 	{
-		int rent;
+		int rent=0;
 		if (this.owner.equals(((UnitFuel)Board.tiles[Board.fuelNum]).owner))
 		{
 			rent = (int)RENT_FACTOR_PACK*Monopoly.die;
@@ -54,5 +54,4 @@ public class UnitElectricity extends Tile{
 	public UnitElectricity(String name){
 		this.name = name;
 	}
-
 }

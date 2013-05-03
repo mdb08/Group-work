@@ -1,21 +1,27 @@
+import java.util.Random;
+
 public class TestUnitFuel {
 
 	public static void main(String[] args)
 	{
-		String name = "Test Fuel Unit";
-		UnitFuel uf = new UnitFuel(name);
-		System.out.println("Created new Fuel Unit with name=" + name);
-		Board board = new Board();
-		Player player = new Player();
-		System.out.println("Some scenarios of a player with starting money=3000 getting onto the Fuel Unit:");
-		player.money = 3000;
-		player.updateWorth();
-		for (int i=0; i<100; i++)
-		{
-			System.out.print("\nBefore: Money=" + player.money + ", Worth=" + player.worth);
-			uf.checkTile(player);
-			System.out.print(" || After: Money=" + player.money + " , Worth=" + player.worth + " || Fee=" + -uf.cash);			
-		}
-	}
+		Monopoly mp = new Monopoly(2,1);
+		Random r = new Random();
+		Monopoly.die = r.nextInt(5) +1;
+		System.out.println("Die=" + Monopoly.die);
 
+		System.out.println("Scenario: Player lands on unowned Fuel Unit.");
+		((UnitFuel)(Board.tiles[Board.fuelNum])).checkTile(mp.players[0]);
+
+		System.out.println("\nScenario: Player lands on owned Fuel Unit.");
+		((UnitFuel)(Board.tiles[Board.fuelNum])).owner = mp.players[1];
+		((UnitFuel)(Board.tiles[Board.fuelNum])).checkTile(mp.players[0]);
+
+		System.out.println("\nScenario: Getting rent from Fuel Unit if owner doesn't own Electricity Unit.n");
+		((UnitFuel)(Board.tiles[Board.fuelNum])).owner = mp.players[1];
+		System.out.println("Rent is " + ((UnitFuel)(Board.tiles[Board.fuelNum])).getRent());
+
+		System.out.println("\nScenario: Getting rent from Fuel Unit if owner also owns Electricity Unit.");
+		((UnitElectricity)(Board.tiles[Board.electricityNum])).owner = mp.players[1];
+		System.out.println("Rent is " + ((UnitFuel)(Board.tiles[Board.fuelNum])).getRent());		
+	}
 }
